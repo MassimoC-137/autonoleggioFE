@@ -1,1 +1,45 @@
-<p>register works!</p>
+<div class="registration-container">
+    <div class="registration-card">
+      <div class="card-title">
+        <button mat-icon-button routerLink="/home">
+          <mat-icon>home</mat-icon>
+        </button>
+        <h1>Registrazione</h1>
+      </div>
+      <form class="form-group" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="username" placeholder="Username">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Password">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Conferma Password</mat-label>
+            <input matInput type="confermaPassword" formControlName="confermaPassword" placeholder="Conferma Password">
+          </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="Email">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input matInput type="text" formControlName="nome" placeholder="Nome">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Cognome</mat-label>
+          <input matInput type="text" formControlName="cognome" placeholder="Cognome">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Data di Conseguimento Patente</mat-label>
+          <input matInput type="date" formControlName="dataConseguimentoPatente">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Credito Disponibile</mat-label>
+          <input matInput type="number" formControlName="creditoDisponibile" placeholder="Credito Disponibile">
+        </mat-form-field>
+        <button mat-raised-button type="submit">Invia</button>
+      </form>
+    </div>
+  </div>
