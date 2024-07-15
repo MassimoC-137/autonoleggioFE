@@ -1,1 +1,47 @@
-<p>home works!</p>
+<div *ngIf="isAdmin; else userDashboard">
+    <!-- Contenuto della dashboard dell'amministratore -->
+    <h1>Dashboard Amministratore</h1>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Gestione Utenti</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Qui puoi gestire gli utenti del sistema.</p>
+        <button mat-raised-button color="primary" routerLink="/user-list">Gestisci Utenti</button>
+      </mat-card-content>
+    </mat-card>
+    
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title>Disponibilità Auto</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Qui puoi visualizzare le auto disponibili.</p>
+          <button mat-raised-button color="primary" routerLink="/car-list">Visualizza Auto</button>
+        </mat-card-content>
+      </mat-card>
+  </div>
+  
+  <ng-template #userDashboard>
+    <!-- Contenuto della dashboard dell'utente normale -->
+    <h1>Dashboard Utente</h1>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Le Mie Prenotazioni</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Qui puoi visualizzare e gestire le tue prenotazioni.</p>
+        <button mat-raised-button color="primary" routerLink="/booking-list">Visualizza Prenotazioni</button>
+      </mat-card-content>
+    </mat-card>
+  
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Disponibilità Auto</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Qui puoi visualizzare le auto disponibili per il noleggio.</p>
+        <button mat-raised-button color="primary" routerLink="/car-list">Visualizza Auto</button>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>

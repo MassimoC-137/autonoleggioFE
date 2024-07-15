@@ -6,15 +6,26 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api/auth';
+  private baseUrl = 'http://localhost:8080/api/auth';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  login(credentials: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, credentials);
+  login(data: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/login`, data);
   }
 
   register(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, data);
+    return this.http.post(`${this.baseUrl}/utente`, data);
   }
+
+  getUserRole(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/user-role`);
+  }
+
+  logout() {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.removeItem('authUser');
+    }
+  }
+  
 }
