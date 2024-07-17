@@ -1,5 +1,4 @@
 <div *ngIf="isAdmin; else userDashboard">
-    <!-- Contenuto della dashboard dell'amministratore -->
     <h1>Dashboard Amministratore</h1>
     <mat-card>
       <mat-card-header>
@@ -23,7 +22,6 @@
   </div>
   
   <ng-template #userDashboard>
-    <!-- Contenuto della dashboard dell'utente normale -->
     <h1>Dashboard Utente</h1>
     <mat-card>
       <mat-card-header>
