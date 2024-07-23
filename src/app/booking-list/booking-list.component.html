@@ -1,1 +1,40 @@
-<p>booking-list works!</p>
+<div>
+    <h1>Lista delle Prenotazioni</h1>
+    <table mat-table [dataSource]="bookings" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let booking">{{booking.id}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="utente">
+        <th mat-header-cell *matHeaderCellDef>Utente</th>
+        <td mat-cell *matCellDef="let booking">{{booking.utente}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="auto">
+        <th mat-header-cell *matHeaderCellDef>Auto</th>
+        <td mat-cell *matCellDef="let booking">{{booking.auto}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="dataInizio">
+        <th mat-header-cell *matHeaderCellDef>Data Inizio</th>
+        <td mat-cell *matCellDef="let booking">{{booking.dataInizio | date}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="dataFine">
+        <th mat-header-cell *matHeaderCellDef>Data Fine</th>
+        <td mat-cell *matCellDef="let booking">{{booking.dataFine | date}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="azioni">
+        <th mat-header-cell *matHeaderCellDef>Azioni</th>
+        <td mat-cell *matCellDef="let booking">
+          <button mat-raised-button color="primary" [routerLink]="['/booking', booking.id]">Modifica</button>
+          <button mat-raised-button color="warn" (click)="deleteBooking(booking.id)">Elimina</button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDefWithTemplate="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>

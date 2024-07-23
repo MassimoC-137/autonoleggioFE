@@ -4,6 +4,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { jwtDecode, JwtPayload } from 'jwt-decode';
+
+interface ExtendedJwtPayload extends JwtPayload {
+  roles: string[];
+}
 
 @Component({
   selector: 'app-home',
@@ -14,17 +19,21 @@ import { AuthService } from '../services/auth.service';
 })
 export class HomeComponent implements OnInit {
   isAdmin: boolean = false;
+  isAuthenticated: boolean = false;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.authService.getUserRole().subscribe({
-      next: (role) => {
-        this.isAdmin = role === 'ADMIN';
-      },
-      error: (err) => {
-        console.error('Failed to get user role', err);
+    const token = this.authService.getTokenStorage();
+    if (token) {
+      const decodedToken = jwtDecode<ExtendedJwtPayload>(token);
+      this.isAuthenticated = true;
+      if (decodedToken.roles.includes('ROLE_ADMIN')) {
+        this.isAdmin = true;
       }
-    });
+    } else {
+      console.error('No token found');
+      this.isAuthenticated = false;
+    }
   }
 }

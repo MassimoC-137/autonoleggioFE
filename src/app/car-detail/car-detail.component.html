@@ -1,1 +1,21 @@
-<p>car-detail works!</p>
+<div *ngIf="car">
+  <h1>Dettaglio Auto</h1>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Auto #{{ car.id }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Modello:</strong> {{ car.modello }}</p>
+      <p><strong>Marca:</strong> {{ car.marca }}</p>
+      <p><strong>Anno:</strong> {{ car.anno }}</p>
+      <p><strong>Descrizione:</strong> {{ car.descrizione }}</p>
+      <p *ngIf="car.colore"><strong>Colore:</strong> {{ car.colore }}</p>
+      <p *ngIf="car.targa"><strong>Targa:</strong> {{ car.targa }}</p>
+      <p *ngIf="car.disponibilita !== undefined"><strong>Disponibilità:</strong> {{ car.disponibilita ? 'Disponibile' : 'Non disponibile' }}</p>
+      <p *ngIf="car.prezzoGiornaliero"><strong>Prezzo Giornaliero:</strong> {{ car.prezzoGiornaliero | currency }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="goBack()">Torna alla lista</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

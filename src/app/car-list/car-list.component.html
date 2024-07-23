@@ -1,1 +1,35 @@
-<p>car-list works!</p>
+<div>
+    <h1>Lista delle Auto</h1>
+    <table mat-table [dataSource]="cars" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let car">{{car.id}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="modello">
+        <th mat-header-cell *matHeaderCellDef>Modello</th>
+        <td mat-cell *matCellDef="let car">{{car.modello}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="marca">
+        <th mat-header-cell *matHeaderCellDef>Marca</th>
+        <td mat-cell *matCellDef="let car">{{car.marca}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="anno">
+        <th mat-header-cell *matHeaderCellDef>Anno</th>
+        <td mat-cell *matCellDef="let car">{{car.anno}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="azioni">
+        <th mat-header-cell *matHeaderCellDef>Azioni</th>
+        <td mat-cell *matCellDef="let car">
+          <button mat-raised-button color="primary" [routerLink]="['/car', car.id]">Modifica</button>
+          <button mat-raised-button color="warn" (click)="deleteCar(car.id)">Elimina</button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDefWithTemplate="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>

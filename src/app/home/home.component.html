@@ -1,4 +1,5 @@
-<div *ngIf="isAdmin; else userDashboard">
+<div *ngIf="isAuthenticated; else notAuthenticated">
+  <div *ngIf="isAdmin; else userDashboard">
     <h1>Dashboard Amministratore</h1>
     <mat-card>
       <mat-card-header>
@@ -11,14 +12,14 @@
     </mat-card>
     
     <mat-card>
-        <mat-card-header>
-          <mat-card-title>Disponibilità Auto</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>Qui puoi visualizzare le auto disponibili.</p>
-          <button mat-raised-button color="primary" routerLink="/car-list">Visualizza Auto</button>
-        </mat-card-content>
-      </mat-card>
+      <mat-card-header>
+        <mat-card-title>Disponibilità Auto</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Qui puoi visualizzare le auto disponibili.</p>
+        <button mat-raised-button color="primary" routerLink="/car-list">Visualizza Auto</button>
+      </mat-card-content>
+    </mat-card>
   </div>
   
   <ng-template #userDashboard>
@@ -43,3 +44,10 @@
       </mat-card-content>
     </mat-card>
   </ng-template>
+</div>
+
+<ng-template #notAuthenticated>
+  <h1>Benvenuto nel nostro servizio di autonoleggio</h1>
+  <p>Effettua il login per accedere alle funzionalità.</p>
+  <button mat-raised-button color="primary" routerLink="/login">Login</button>
+</ng-template>

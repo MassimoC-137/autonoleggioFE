@@ -31,8 +31,22 @@ export class LoginComponent {
   })
 
   onSubmit() {
+    console.log("validater", this.loginForm.valid);
     if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value)
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (response) => {
+          if (response && response.jwt) {
+            console.log("login", response);
+            this.authService.setTokenStorage(response.jwt); // Usare solo il token jwt
+            this.router.navigate(['home']);
+          } else {
+            console.error('Invalid login response:', response);
+          }
+        },
+        error: (err) => {
+          console.error('Login failed', err);
+        }
+      });
     }
   }
 }

@@ -8,15 +8,16 @@ import { CarListComponent } from './car-list/car-list.component';
 import { CarDetailComponent } from './car-detail/car-detail.component';
 import { BookingListComponent } from './booking-list/booking-list.component';
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
+import { authGuard } from './services/auth.guard';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'users', component: UserListComponent },
-  { path: 'user/:id', component: UserDetailComponent },
-  { path: 'cars', component: CarListComponent },
-  { path: 'car/:id', component: CarDetailComponent },
-  { path: 'bookings', component: BookingListComponent },
-  { path: 'booking/:id', component: BookingDetailComponent }
+  { path: 'user-list', component: UserListComponent, canActivate: [authGuard] },
+  { path: 'user-detail/:id', component: UserDetailComponent, canActivate: [authGuard] },
+  { path: 'car-list', component: CarListComponent, canActivate: [authGuard] },
+  { path: 'car-detail/:id', component: CarDetailComponent, canActivate: [authGuard] },
+  { path: 'booking-list', component: BookingListComponent, canActivate: [authGuard] },
+  { path: 'booking-detail/:id', component: BookingDetailComponent, canActivate: [authGuard] }
 ];
