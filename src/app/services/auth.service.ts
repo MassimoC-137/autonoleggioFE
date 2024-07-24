@@ -24,9 +24,7 @@ export class AuthService {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
    setTokenStorage(value: any) {
-    console.log("entra qqui")
     if (isPlatformBrowser(this.platformId)) {
-      console.log("entra if", value)
       this._tokenStorage = value;
       localStorage.setItem('authToken', this._tokenStorage);
     }
@@ -44,8 +42,6 @@ export class AuthService {
   }
 
   login(body: any): Observable<any> {
-    
-    
     return this.httpClient.post(`${this.apiUrl}/login`, body).pipe(
       tap((result: any) => {
         this.setTokenStorage(result.jwt)

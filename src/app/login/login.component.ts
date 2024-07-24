@@ -31,7 +31,6 @@ export class LoginComponent {
   })
 
   onSubmit() {
-    console.log("validater", this.loginForm.valid);
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
